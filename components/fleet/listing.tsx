@@ -118,7 +118,7 @@ const Listing = ({ data }: { data: PaginatedDocs<Jet> }) => {
                   {type === 'wifi'
                     ? 'Wifi'
                     : type === 'range' && typeof value === 'number'
-                      ? `${new Intl.NumberFormat('en-US').format(value)} km`
+                      ? `${new Intl.NumberFormat('en-US').format(value)} nm`
                       : value}
                 </small>
                 <small className={'text-black'}>{preset.label}</small>

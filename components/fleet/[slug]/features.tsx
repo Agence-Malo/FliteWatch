@@ -83,7 +83,7 @@ const Features = ({ data }: { data: Jet }) => {
           {type === 'wifi'
             ? 'WiFi'
             : type === 'range' && typeof value === 'number'
-              ? `${new Intl.NumberFormat('en-US').format(value)} KM`
+              ? `${new Intl.NumberFormat('en-US').format(value)} NM`
               : value}
         </p>
         <p className={'text-black uppercase'}>{preset.label}</p>

@@ -3,6 +3,7 @@ export default interface IList {
   title: string
   description: string
   subtitle?: string
-  sublist?: IList[]
+  sublist?: Pick<IList, 'title' | 'description'>[]
   note?: string
+  image?: StaticImageData
 }

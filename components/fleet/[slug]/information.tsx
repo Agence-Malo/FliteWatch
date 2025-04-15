@@ -24,7 +24,7 @@ const Information = ({ information }: { information: Jet['information'] }) => {
       },
       {
         label: 'Maximum range',
-        value: `${new Intl.NumberFormat('en-US').format(information.range)} km | ${new Intl.NumberFormat('en-US').format(parseFloat((information.range * 0.539957).toFixed(2)))} nmi`,
+        value: `${new Intl.NumberFormat('en-US').format(information.range)} nm`,
       },
       {
         label: 'Baggage',

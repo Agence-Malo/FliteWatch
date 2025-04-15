@@ -5,7 +5,10 @@ import { useState } from 'react'
 import { Divider } from '@heroui/react'
 import Image from 'next/image'
 
-import image from '@/public/graphics/images/services.webp'
+import management from '@/public/graphics/images/services/management.webp'
+import charters from '@/public/graphics/images/services/charters.webp'
+import sales from '@/public/graphics/images/services/sales.webp'
+import additional from '@/public/graphics/images/services/additional.webp'
 
 const Service = () => {
   const services: IList[] = [
@@ -38,6 +41,7 @@ const Service = () => {
         },
       ],
       note: 'With FliteWatch, you can expect aircraft management that is both precise and practical, allowing you to enjoy ownership with confidence',
+      image: management,
     },
     {
       tab: 'Flight Charters',
@@ -68,6 +72,7 @@ const Service = () => {
         },
       ],
       note: 'FliteWatch charters are more than just a service; they are a reflection of our commitment to meaningful, long-term relationships built on trust and understanding.',
+      image: charters,
     },
     {
       tab: 'Aircraft Sales',
@@ -97,6 +102,7 @@ const Service = () => {
         },
       ],
       note: 'At FliteWatch, we simplify the complexities of aircraft sales, ensuring each transaction aligns with your objectives and delivers exceptional results.',
+      image: sales,
     },
     {
       tab: 'Additional Services',
@@ -125,6 +131,7 @@ const Service = () => {
         },
       ],
       note: 'Every service we provide reflects FliteWatch’s dedication to a streamlined, efficient, and client-focused approach to private aviation.',
+      image: additional,
     },
   ]
 
@@ -185,7 +192,7 @@ const Service = () => {
         className={`w-full h-max lg:w-10/12 flex flex-col lg:flex-row-reverse justify-between items-start gap-[2vh] lg:gap-[2vw] ${fade ? 'opacity-0' : 'opacity-100'}`}
       >
         <Image
-          src={image}
+          src={currentTab.image}
           alt={'The back of a jet towards an opening hangar from the inside'}
           className={
             'w-full lg:w-1/2 h-[32vh] md:h-[64vh] lg:h-[40vh] rounded-xl drop-shadow-lg object-cover object-center'
