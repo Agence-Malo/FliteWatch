@@ -16,7 +16,6 @@ const Jets: CollectionConfig = {
               .replace(/\s+/g, '-')
               .replace(/[^\w-]+/g, '')
               .toLowerCase()
-            console.dir(data)
             return data
           }
         } else {

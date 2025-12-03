@@ -14,7 +14,7 @@ const Information = ({ information }: { information: Jet['information'] }) => {
       },
       {
         label: 'Flights Hours',
-        value: `${Math.floor(information.hours)} h ${Math.round((information.hours - Math.floor(information.hours)) * 60) > 0 && `${Math.round((information.hours - Math.floor(information.hours)) * 60)} min`}`,
+        value: `${Math.floor(information.hours)} h${Math.round((information.hours - Math.floor(information.hours)) * 60) > 0 ? ` ${Math.round((information.hours - Math.floor(information.hours)) * 60)} min` : ''}`,
       },
     ],
     [

@@ -14,7 +14,7 @@ const Footer = dynamic(() => import('@/components/ui/footer'))
 
 const Aircraft = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const slug = (await params).slug
-  const data = await payload.findByID({
+  const data = await (await payload()).findByID({
     id: slug,
     collection: 'jets',
   })

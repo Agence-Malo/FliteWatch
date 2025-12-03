@@ -1,8 +1,5 @@
-import { getPayload } from 'payload'
-import config from '@payload-config';
+import payload from '@/lib/payload'
 import { Jet } from '@/payload-types'
-
-const payload = await getPayload({ config })
 
 export interface IFleet {
   id: Jet['id']
@@ -14,7 +11,7 @@ export interface IFleet {
 export const getFleet = async (): Promise<IFleet[]> => {
   try {
     return (
-      await payload.find({
+      await (await payload()).find({
         collection: 'jets',
         pagination: false,
         select: {
@@ -26,6 +23,7 @@ export const getFleet = async (): Promise<IFleet[]> => {
             hero: true,
           },
         },
+        limit: 0
       })
     ).docs
   } catch (e) {
