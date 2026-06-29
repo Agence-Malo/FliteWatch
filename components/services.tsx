@@ -75,11 +75,11 @@ const Service = () => {
       image: charters,
     },
     {
-      tab: 'Aircraft Sales',
+      tab: 'Aircraft Sales and Consultancy Services',
       title: 'Expert Support for Buying and Selling Your Aircraft',
       description:
-        'FliteWatch offers tailored solutions for aircraft transactions, ensuring a smooth and transparent process from start to finish. Whether you are acquiring your first jet or selling an existing one, our team provides clear guidance, market expertise, and practical advice to help you achieve the best value.',
-      subtitle: 'Our Aircraft Sales Services Include',
+        "Aircraft transactions are often made to be complicated, whether because parties are not aligned or to justify time and high fees. With FliteWatch it doesn't have to be this way. We know from first-hand experience any transaction can be made simple if the parties are aligned with the objective. We use a small, vetted network of lawyers, tax advisors and technical advisors to ensure you get the assistance you need at the correct price. We charge a flat fee established at the beginning of the engagement and payable at the end of it so there is no doubt about inflating prices. We are fully transparent and ask the same of you, otherwise it defeats the purpose and becomes complicated, which is not for us.\n\nFrom aircraft sourcing and vetting from a technical perspective to pre-purchase inspection and delivery, we are there to guide you.",
+      subtitle: 'What FliteWatch offers',
       sublist: [
         {
           title: 'Market Analysis',
@@ -99,6 +99,10 @@ const Service = () => {
           title: 'Tailored Recommendations',
           description:
             'Identifying the right aircraft based on your operational and financial goals.',
+        },
+        {
+          title: 'One-time flat fee agreed in advance',
+          description: '',
         },
       ],
       note: 'At FliteWatch, we simplify the complexities of aircraft sales, ensuring each transaction aligns with your objectives and delivers exceptional results.',
@@ -186,7 +190,11 @@ const Service = () => {
         className={`w-full lg:w-10/12 flex flex-col justify-start items-start gap-[2vh] ${fade ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500 ease-in-out`}
       >
         <p className={'font-bold'}>{currentTab.title}:</p>
-        <p className={'text-xs md:text-sm text-justify'}>{currentTab.description}</p>
+        {currentTab.description.split('\n\n').map((paragraph, i) => (
+          <p key={i} className={'text-xs md:text-sm text-justify'}>
+            {paragraph}
+          </p>
+        ))}
       </div>
       <div
         className={`w-full h-max lg:w-10/12 flex flex-col lg:flex-row-reverse justify-between items-start gap-[2vh] lg:gap-[2vw] ${fade ? 'opacity-0' : 'opacity-100'}`}
@@ -208,7 +216,13 @@ const Service = () => {
                   className={`${currentTab.sublist && i !== currentTab.sublist.length - 1 && 'mb-[2vh]'}`}
                 >
                   <p className={'text-xs md:text-sm'}>
-                    <b>{item.title}:</b> {item.description}
+                    {item.description ? (
+                      <>
+                        <b>{item.title}:</b> {item.description}
+                      </>
+                    ) : (
+                      item.title
+                    )}
                   </p>
                 </li>
               ))}

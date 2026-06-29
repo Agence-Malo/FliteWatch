@@ -19,9 +19,9 @@ const Services = () => {
           'Chartering services led by expertise and driven by relationships, offering a reliable and customized travel experience.',
       },
       {
-        title: 'Aircraft Sales',
+        title: 'Aircraft Sales and Consultancy Services',
         description:
-          'Clear and tailored guidance for buying or selling your aircraft, ensuring seamless and valuable outcomes.',
+          'Clear, transparent guidance for buying or selling your aircraft, with one flat fee agreed in advance.',
       },
       {
         title: 'Additional Services',
