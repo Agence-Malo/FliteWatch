@@ -54,7 +54,7 @@ const Services = () => {
                 if (isOpen) setCurrentAccordionItem(i)
                 return null
               }}
-              title={<h2 className={'cursor-pointer'}>{service.title}</h2>}
+              title={<h2 className={'text-lg md:text-xl cursor-pointer'}>{service.title}</h2>}
               classNames={{
                 title: `text-white ${currentAccordionItem === i ? 'opacity-100' : 'opacity-50'} transition-opacity duration-200 ease-in-out`,
                 content: 'text-white',

@@ -163,7 +163,7 @@ const Service = () => {
           <h1 className={'lg:w-2/12'}>Services</h1>
           <div
             className={
-              'w-full lg:w-9/12  pr-[4vw] lg:pr-0 flex justify-start lg:justify-end items-baseline gap-[8vw] overflow-y-hidden overflow-x-auto [mask-image:_linear-gradient(to_right,_black,_black_90%,_transparent)] lg:[mask-image:none]'
+              'w-full lg:w-9/12  pr-[4vw] lg:pr-0 flex justify-start lg:justify-end items-baseline gap-[8vw] lg:gap-[3vw] overflow-y-hidden overflow-x-auto [mask-image:_linear-gradient(to_right,_black,_black_90%,_transparent)] lg:[mask-image:none]'
             }
           >
             {services.map((service) => (
@@ -221,7 +221,7 @@ const Service = () => {
                         <b>{item.title}:</b> {item.description}
                       </>
                     ) : (
-                      item.title
+                      <b>{item.title}</b>
                     )}
                   </p>
                 </li>
