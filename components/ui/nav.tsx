@@ -79,6 +79,24 @@ export const paths = [
       </svg>
     ),
   },
+  {
+    name: 'Keep up with us',
+    href: '/keep-up-with-us',
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        viewBox="0 0 32 32"
+        className={'size-full'}
+      >
+        <path
+          fillRule="evenodd"
+          d="M22 4H5C3.343 4 2 5.343 2 7v16c0 2.761 2.239 5 5 5h18c2.761 0 5-2.239 5-5V11c0-1.105-.895-2-2-2h-3V7c0-1.657-1.343-3-3-3zM6 9h13v7H6V9zm0 10h13v2H6v-2zm0 5h9v2H6v-2z"
+        ></path>
+      </svg>
+    ),
+  },
 ]
 
 const Nav = () => {
