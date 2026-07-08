@@ -4,44 +4,63 @@ import Link from 'next/link'
 import { formatDate } from '@/components/blog/card'
 
 const Featured = ({ post }: { post: Post }) => (
-  <section className={'w-full flex justify-center items-center'}>
+  <Link
+    href={`/keep-up-with-us/${post.id}`}
+    className={
+      'group relative w-full h-[64vh] min-h-[420px] flex flex-col justify-end rounded-[14px] overflow-hidden drop-shadow-2xl'
+    }
+  >
+    {typeof post.image !== 'number' && (
+      <Image
+        src={`${post.image.url}`}
+        alt={post.image.alt}
+        fill
+        priority
+        sizes={'92vw'}
+        className={
+          'object-cover object-center grayscale-[0.35] group-hover:grayscale-0 group-hover:scale-[1.025] transition-[filter,transform] duration-1000 ease-in-out'
+        }
+      />
+    )}
+    <div
+      className={'absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.82),transparent_70%)]'}
+    />
     <div
       className={
-        'w-full flex flex-col-reverse lg:flex-row justify-center items-center lg:items-stretch rounded-lg overflow-clip drop-shadow-2xl'
+        'relative w-full flex flex-col justify-end items-start gap-[2vh] p-[6vw] lg:p-[3vw]'
       }
     >
-      <Link
-        href={`/keep-up-with-us/${post.id}`}
+      <div className={'flex justify-start items-center gap-[3vw] lg:gap-[1vw]'}>
+        {typeof post.category === 'object' && post.category !== null && (
+          <small
+            className={
+              'text-xs tracking-[0.2em] text-white border border-white/40 rounded-full px-[1em] py-[0.4em] leading-none backdrop-blur-sm'
+            }
+          >
+            {post.category.name}
+          </small>
+        )}
+        <small className={'text-xs tracking-[0.2em] text-grey-100'}>
+          {formatDate(post.createdAt)}
+        </small>
+      </div>
+      <h2
         className={
-          'w-full lg:w-1/2 flex flex-col justify-center items-start gap-[2vh] bg-grey-50 lg:pl-[4vw] lg:py-[4vh] lg:pr-[2vw] p-[6vw]'
+          'text-white font-semibold text-[length:clamp(1.8rem,4vw,3.1rem)] leading-tight max-w-[22ch] cursor-pointer'
         }
       >
-        <div className={'w-full flex justify-start items-baseline gap-[4vw] lg:gap-[1.5vw]'}>
-          <small className={'font-bold text-grey-400'}>Latest</small>
-          {typeof post.category === 'object' && post.category !== null && (
-            <small className={'text-grey-300'}>{post.category.name}</small>
-          )}
-          <small className={'text-grey-300'}>{formatDate(post.createdAt)}</small>
-        </div>
-        <h2 className={'cursor-pointer'}>{post.title}</h2>
-        <p className={'text-justify cursor-pointer'}>{post.excerpt}</p>
-      </Link>
-      <Link
-        href={`/keep-up-with-us/${post.id}`}
-        className={'w-full lg:w-1/2 h-[28vh] lg:h-auto relative overflow-hidden'}
+        {post.title}
+      </h2>
+      <p className={'text-grey-100 font-light max-w-[58ch] cursor-pointer'}>{post.excerpt}</p>
+      <small
+        className={
+          'text-xs tracking-[0.28em] text-white mt-[1vh] pb-[0.35em] border-b border-white/60 group-hover:border-white transition-colors duration-300'
+        }
       >
-        {typeof post.image !== 'number' && (
-          <Image
-            src={`${post.image.url}`}
-            alt={post.image.alt}
-            width={parseInt(`${post.image.width}`)}
-            height={parseInt(`${post.image.height}`)}
-            className={'object-cover object-center w-full h-full absolute inset-0'}
-          />
-        )}
-      </Link>
+        Read the story
+      </small>
     </div>
-  </section>
+  </Link>
 )
 
 export default Featured

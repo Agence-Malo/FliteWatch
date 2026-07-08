@@ -2,7 +2,6 @@
 
 import type { Category, Post } from '@/payload-types'
 import { useState } from 'react'
-import { Divider } from '@heroui/react'
 import Featured from '@/components/blog/featured'
 import Card from '@/components/blog/card'
 
@@ -20,58 +19,68 @@ const Listing = ({ posts, categories }: { posts: Post[]; categories: Category[] 
   const [featured, ...rest] = filtered
 
   return (
-    <section className={'w-[92vw] mt-[4rem] flex flex-col justify-start items-center gap-[4vh]'}>
-      <div className={'w-full flex flex-col justify-start items-center lg:gap-[2vh]'}>
+    <section className={'containerize mt-[4rem] flex flex-col justify-start items-start'}>
+      <div
+        className={
+          'w-full mb-[4vh] flex flex-col lg:flex-row justify-between items-start lg:items-end'
+        }
+      >
+        <div className={'flex flex-col justify-start items-start gap-[1vh]'}>
+          <small className={'text-xs tracking-[0.28em] text-grey-300 cursor-default'}>
+            Journal
+          </small>
+          <h1 className={'font-light text-[length:clamp(2.4rem,5vw,4rem)]'}>Keep up with us</h1>
+        </div>
         <div
-          className={'w-full flex flex-col lg:flex-row justify-start items-start lg:items-baseline'}
+          className={
+            'w-full lg:w-auto lg:pb-[0.6rem] flex justify-start lg:justify-end items-baseline gap-[8vw] lg:gap-[2vw] overflow-y-hidden overflow-x-auto [mask-image:_linear-gradient(to_right,_black,_black_90%,_transparent)] lg:[mask-image:none]'
+          }
         >
-          <h1 className={'lg:w-4/12'}>Keep up with us</h1>
-          <div
-            className={
-              'w-full lg:w-8/12 pr-[4vw] lg:pr-0 flex justify-start lg:justify-end items-baseline gap-[8vw] lg:gap-[3vw] overflow-y-hidden overflow-x-auto [mask-image:_linear-gradient(to_right,_black,_black_90%,_transparent)] lg:[mask-image:none]'
-            }
-          >
-            <button type={'button'} onClick={() => setCurrentCategory(null)}>
+          <button type={'button'} onClick={() => setCurrentCategory(null)}>
+            <p
+              className={`${!currentCategory ? 'font-bold text-black' : 'text-grey-300 hover:text-black'} transition-colors duration-200 ease-in-out whitespace-nowrap py-[2vh] lg:py-0 cursor-pointer`}
+            >
+              All
+            </p>
+          </button>
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              type={'button'}
+              onClick={() => setCurrentCategory(category.id)}
+            >
               <p
-                className={`${!currentCategory ? 'font-bold' : 'hover:opacity-75 transition-opacity duration-200 ease-in-out'} whitespace-nowrap py-[2vh] lg:py-0 cursor-pointer`}
+                className={`${currentCategory === category.id ? 'font-bold text-black' : 'text-grey-300 hover:text-black'} transition-colors duration-200 ease-in-out whitespace-nowrap py-[2vh] lg:py-0 cursor-pointer`}
               >
-                All
+                {category.name}
               </p>
             </button>
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                type={'button'}
-                onClick={() => setCurrentCategory(category.id)}
-              >
-                <p
-                  className={`${currentCategory === category.id ? 'font-bold' : 'hover:opacity-75 transition-opacity duration-200 ease-in-out'} whitespace-nowrap py-[2vh] lg:py-0 cursor-pointer`}
-                >
-                  {category.name}
-                </p>
-              </button>
-            ))}
-          </div>
+          ))}
         </div>
-        <Divider className={'w-full bg-grey-500'} />
       </div>
       {featured ? (
         <>
           <Featured post={featured} />
           {rest.length > 0 && (
-            <div
-              className={
-                'w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[6vw] md:gap-[2vw] my-[4vh]'
-              }
-            >
-              {rest.map((post) => (
-                <Card key={post.id} post={post} />
-              ))}
+            <div className={'w-full mt-[8vh] flex flex-col justify-start items-start'}>
+              <small className={'text-xs tracking-[0.28em] text-grey-300 cursor-default mb-[2vh]'}>
+                Latest stories
+              </small>
+              <div className={'w-full flex flex-col'}>
+                {rest.map((post) => (
+                  <Card key={post.id} post={post} />
+                ))}
+              </div>
             </div>
           )}
         </>
       ) : (
-        <p className={'my-[8vh]'}>No articles published yet. Check back soon!</p>
+        <div className={'w-full my-[12vh] flex flex-col justify-center items-center gap-[1vh]'}>
+          <small className={'text-xs tracking-[0.28em] text-grey-300 cursor-default'}>
+            Journal
+          </small>
+          <p className={'font-light text-grey-400'}>No articles published yet. Check back soon.</p>
+        </div>
       )}
     </section>
   )

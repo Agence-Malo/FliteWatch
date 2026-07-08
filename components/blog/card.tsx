@@ -9,37 +9,67 @@ export const formatDate = (date: string) =>
     year: 'numeric',
   }).format(new Date(date))
 
-const Card = ({ post }: { post: Post }) => (
-  <Link
-    href={`/keep-up-with-us/${post.id}`}
-    className={
-      'group w-full flex flex-col justify-start items-stretch bg-grey-50 rounded-lg overflow-clip drop-shadow-2xl'
-    }
-  >
-    <div className={'w-full h-[24vh] overflow-hidden'}>
-      {typeof post.image !== 'number' && (
-        <Image
-          src={`${post.image.url}`}
-          alt={post.image.alt}
-          width={parseInt(`${post.image.width}`)}
-          height={parseInt(`${post.image.height}`)}
-          className={
-            'object-cover object-center w-full h-full group-hover:scale-105 transition-transform duration-500 ease-in-out'
-          }
-        />
-      )}
-    </div>
-    <div className={'w-full flex flex-col justify-start items-start gap-[1vh] p-[6vw] lg:p-[2vw]'}>
-      <div className={'w-full flex justify-between items-baseline gap-[2vw] lg:gap-[1vw]'}>
-        <small className={'font-bold text-grey-400'}>
-          {typeof post.category === 'object' && post.category !== null ? post.category.name : ''}
-        </small>
-        <small className={'text-grey-300'}>{formatDate(post.createdAt)}</small>
+const Card = ({ post }: { post: Post }) => {
+  const [dayMonth, year] = formatDate(post.createdAt).split(', ')
+
+  return (
+    <Link
+      href={`/keep-up-with-us/${post.id}`}
+      className={
+        'group w-full flex flex-col lg:grid lg:grid-cols-[8rem_300px_1fr_auto] items-start lg:items-center gap-[2vh] lg:gap-[2vw] border-t border-grey-200 last:border-b py-[4vh]'
+      }
+    >
+      <div
+        className={
+          'flex lg:flex-col justify-start items-baseline lg:items-start gap-[1.5vw] lg:gap-[0.25vh]'
+        }
+      >
+        <small className={'text-[0.82rem] tracking-[0.08em] text-grey-300'}>{dayMonth}</small>
+        <small className={'text-[0.82rem] tracking-[0.08em] text-grey-300'}>{year}</small>
       </div>
-      <h3 className={'cursor-pointer'}>{post.title}</h3>
-      <p className={'text-justify cursor-pointer line-clamp-3'}>{post.excerpt}</p>
-    </div>
-  </Link>
-)
+      <div
+        className={
+          'relative w-full h-[200px] lg:w-[300px] lg:h-[150px] rounded-[10px] overflow-hidden order-first lg:order-none'
+        }
+      >
+        {typeof post.image !== 'number' && (
+          <Image
+            src={`${post.image.url}`}
+            alt={post.image.alt}
+            fill
+            sizes={'(min-width: 1024px) 300px, 92vw'}
+            className={
+              'object-cover object-center grayscale group-hover:grayscale-0 group-hover:scale-105 transition-[filter,transform] duration-700 ease-in-out'
+            }
+          />
+        )}
+      </div>
+      <div className={'flex flex-col justify-start items-start gap-[1vh]'}>
+        {typeof post.category === 'object' && post.category !== null && (
+          <small className={'text-[0.68rem] tracking-[0.22em] text-grey-400'}>
+            {post.category.name}
+          </small>
+        )}
+        <h3
+          className={
+            'font-semibold text-[length:clamp(1.15rem,2vw,1.6rem)] leading-snug max-w-[30ch] cursor-pointer'
+          }
+        >
+          {post.title}
+        </h3>
+        <p className={'font-light text-grey-300 max-w-[60ch] cursor-pointer line-clamp-2'}>
+          {post.excerpt}
+        </p>
+      </div>
+      <span
+        className={
+          'hidden lg:block justify-self-end pr-[1vw] text-xl text-grey-200 group-hover:text-grey-400 group-hover:translate-x-[8px] transition-[color,transform] duration-300 ease-out cursor-pointer'
+        }
+      >
+        →
+      </span>
+    </Link>
+  )
+}
 
 export default Card

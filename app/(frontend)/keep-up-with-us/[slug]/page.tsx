@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import dynamicImport from 'next/dynamic'
 import Image from 'next/image'
-import { Divider } from '@heroui/react'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getPost, getPosts } from '@/app/(frontend)/actions/posts'
 import Card, { formatDate } from '@/components/blog/card'
@@ -87,14 +86,11 @@ const Article = async ({ params }: { params: Promise<{ slug: string }> }) => {
         />
       </article>
       {others.length > 0 && (
-        <section className={'w-[92vw] flex flex-col justify-start items-start gap-[4vh]'}>
-          <div className={'w-full flex flex-col justify-start items-start gap-[2vh]'}>
-            <h2>More news</h2>
-            <Divider className={'w-full bg-grey-500'} />
-          </div>
-          <div
-            className={'w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[6vw] md:gap-[2vw]'}
-          >
+        <section className={'containerize flex flex-col justify-start items-start'}>
+          <small className={'text-xs tracking-[0.28em] text-grey-300 cursor-default mb-[2vh]'}>
+            More news
+          </small>
+          <div className={'w-full flex flex-col'}>
             {others.map((other) => (
               <Card key={other.id} post={other} />
             ))}
