@@ -41,7 +41,7 @@ const Featured = ({ post }: { post: Post }) => (
           </small>
         )}
         <small className={'text-xs tracking-[0.2em] text-grey-100'}>
-          {formatDate(post.createdAt)}
+          {formatDate(post.publishedDate)}
         </small>
       </div>
       <h2

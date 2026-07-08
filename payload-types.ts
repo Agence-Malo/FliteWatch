@@ -219,6 +219,7 @@ export interface Jet {
 export interface Post {
   id: string;
   title: string;
+  publishedDate: string;
   excerpt: string;
   fullContent: {
     root: {
@@ -447,6 +448,7 @@ export interface JetsSelect<T extends boolean = true> {
 export interface PostsSelect<T extends boolean = true> {
   id?: T;
   title?: T;
+  publishedDate?: T;
   excerpt?: T;
   fullContent?: T;
   image?: T;

@@ -41,6 +41,18 @@ const Posts: CollectionConfig = {
       required: true,
     },
     { name: 'title', type: 'text', required: true },
+    {
+      name: 'publishedDate',
+      type: 'date',
+      required: true,
+      defaultValue: () => new Date().toISOString(),
+      admin: {
+        position: 'sidebar',
+        date: {
+          pickerAppearance: 'dayOnly',
+        },
+      },
+    },
     { name: 'excerpt', type: 'textarea', required: true },
     { name: 'fullContent', type: 'richText', required: true },
     {

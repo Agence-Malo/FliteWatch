@@ -7,7 +7,7 @@ export const getPosts = async (limit?: number): Promise<Post[]> => {
       await (await payload()).find({
         collection: 'posts',
         where: { _status: { equals: 'published' } },
-        sort: '-createdAt',
+        sort: '-publishedDate',
         ...(limit ? { limit } : { pagination: false, limit: 0 }),
       })
     ).docs

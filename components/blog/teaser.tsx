@@ -15,7 +15,7 @@ const Meta = ({ post, light }: { post: Post; light?: boolean }) => (
     <small
       className={`${light ? 'text-xs tracking-[0.2em] text-grey-200' : 'text-[0.68rem] tracking-[0.22em] text-grey-400'}`}
     >
-      {formatDate(post.createdAt)}
+      {formatDate(post.publishedDate)}
     </small>
   </div>
 )

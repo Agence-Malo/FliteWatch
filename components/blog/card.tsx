@@ -10,7 +10,7 @@ export const formatDate = (date: string) =>
   }).format(new Date(date))
 
 const Card = ({ post }: { post: Post }) => {
-  const [dayMonth, year] = formatDate(post.createdAt).split(', ')
+  const [dayMonth, year] = formatDate(post.publishedDate).split(', ')
 
   return (
     <Link

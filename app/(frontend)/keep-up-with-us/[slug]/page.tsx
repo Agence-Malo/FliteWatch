@@ -25,7 +25,7 @@ export const generateMetadata = async ({
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      publishedTime: post.createdAt,
+      publishedTime: post.publishedDate,
       ...(image?.url && {
         images: [
           {
@@ -73,7 +73,9 @@ const Article = async ({ params }: { params: Promise<{ slug: string }> }) => {
                 {post.category.name}
               </small>
             )}
-            <small className={'text-grey-300 cursor-default'}>{formatDate(post.createdAt)}</small>
+            <small className={'text-grey-300 cursor-default'}>
+              {formatDate(post.publishedDate)}
+            </small>
           </div>
           <h1>{post.title}</h1>
           <p className={'text-grey-400'}>{post.excerpt}</p>
