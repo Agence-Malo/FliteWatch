@@ -1,4 +1,5 @@
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
+import { getPosts } from '@/app/(frontend)/actions/posts'
 
 import View from '@/components/ui/view'
 import Intro from '@/components/about-us/intro'
@@ -7,18 +8,20 @@ import Image from 'next/image'
 
 import hero from '@/public/graphics/images/about-us/hero.webp';
 
-const Team = dynamic(() => import('@/components/about-us/team'))
-const Certifications = dynamic(() => import('@/components/about-us/certifications'))
-const Contact = dynamic(() => import('@/components/ui/contact'))
-const Footer = dynamic(() => import('@/components/ui/footer'))
+const Team = dynamicImport(() => import('@/components/about-us/team'))
+const Certifications = dynamicImport(() => import('@/components/about-us/certifications'))
+const Teaser = dynamicImport(() => import('@/components/blog/teaser'))
+const Contact = dynamicImport(() => import('@/components/ui/contact'))
+const Footer = dynamicImport(() => import('@/components/ui/footer'))
 
-const AboutUs = () => (
+const AboutUs = async () => (
   <main className={'w-full flex flex-col items-center overflow-hidden justify-start'}>
     <View />
     <Intro />
     <Values />
     <Team />
     <Certifications />
+    <Teaser posts={await getPosts(3)} variant={'trio'} />
     <Image
       src={hero}
       alt={'A sleek private jet parked on the tarmac with mountains in the background'}
@@ -32,3 +35,5 @@ const AboutUs = () => (
 )
 
 export default AboutUs
+
+export const dynamic = 'force-dynamic';

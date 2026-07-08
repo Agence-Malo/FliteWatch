@@ -1,15 +1,14 @@
 import payload from '@/lib/payload'
 import { Category, Post } from '@/payload-types'
 
-export const getPosts = async (): Promise<Post[]> => {
+export const getPosts = async (limit?: number): Promise<Post[]> => {
   try {
     return (
       await (await payload()).find({
         collection: 'posts',
         where: { _status: { equals: 'published' } },
         sort: '-createdAt',
-        pagination: false,
-        limit: 0,
+        ...(limit ? { limit } : { pagination: false, limit: 0 }),
       })
     ).docs
   } catch (e) {
