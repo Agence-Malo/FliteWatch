@@ -80,7 +80,6 @@ const Article = async ({ params }: { params: Promise<{ slug: string }> }) => {
             </small>
           </div>
           <h1>{post.title}</h1>
-          <p className={'text-grey-400'}>{post.excerpt}</p>
         </header>
         <RichText
           data={post.fullContent}
