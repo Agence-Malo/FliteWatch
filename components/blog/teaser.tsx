@@ -2,6 +2,7 @@ import type { Post } from '@/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { formatDate } from '@/components/blog/card'
+import { focalPosition } from '@/lib/focal'
 
 const Meta = ({ post, light }: { post: Post; light?: boolean }) => (
   <div className={'flex justify-start items-baseline gap-[2vw] lg:gap-[0.75vw]'}>
@@ -35,8 +36,9 @@ const Hero = ({ posts }: { posts: Post[] }) => {
             alt={latest.image.alt}
             fill
             sizes={'(min-width: 1024px) 55vw, 92vw'}
+            style={{ objectPosition: focalPosition(latest.image) }}
             className={
-              'object-cover object-center grayscale group-hover:grayscale-0 group-hover:scale-[1.03] transition-[filter,transform] duration-[800ms] ease-in-out'
+              'object-cover grayscale group-hover:grayscale-0 group-hover:scale-[1.03] transition-[filter,transform] duration-[800ms] ease-in-out'
             }
           />
         )}
@@ -109,8 +111,9 @@ const Trio = ({ posts }: { posts: Post[] }) => (
               alt={post.image.alt}
               fill
               sizes={'(min-width: 1024px) 30vw, 92vw'}
+              style={{ objectPosition: focalPosition(post.image) }}
               className={
-                'object-cover object-center grayscale group-hover:grayscale-0 group-hover:scale-105 transition-[filter,transform] duration-700 ease-in-out'
+                'object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-[filter,transform] duration-700 ease-in-out'
               }
             />
           )}

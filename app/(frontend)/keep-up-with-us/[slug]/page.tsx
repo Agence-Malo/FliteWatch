@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getPost, getPosts } from '@/app/(frontend)/actions/posts'
 import Card, { formatDate } from '@/components/blog/card'
+import { focalPosition } from '@/lib/focal'
 
 import View from '@/components/ui/view'
 
@@ -56,7 +57,8 @@ const Article = async ({ params }: { params: Promise<{ slug: string }> }) => {
             alt={post.image.alt}
             width={parseInt(`${post.image.width}`)}
             height={parseInt(`${post.image.height}`)}
-            className={'w-full h-full object-cover object-center rounded-lg drop-shadow-2xl'}
+            style={{ objectPosition: focalPosition(post.image) }}
+            className={'w-full h-full object-cover rounded-lg drop-shadow-2xl'}
             priority
           />
         )}

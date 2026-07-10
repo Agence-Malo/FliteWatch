@@ -1,6 +1,7 @@
 import type { Post } from '@/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
+import { focalPosition } from '@/lib/focal'
 
 export const formatDate = (date: string) =>
   new Intl.DateTimeFormat('en-US', {
@@ -38,8 +39,9 @@ const Card = ({ post }: { post: Post }) => {
             alt={post.image.alt}
             fill
             sizes={'(min-width: 1024px) 300px, 92vw'}
+            style={{ objectPosition: focalPosition(post.image) }}
             className={
-              'object-cover object-center grayscale group-hover:grayscale-0 group-hover:scale-105 transition-[filter,transform] duration-700 ease-in-out'
+              'object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-[filter,transform] duration-700 ease-in-out'
             }
           />
         )}

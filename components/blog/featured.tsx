@@ -2,6 +2,7 @@ import type { Post } from '@/payload-types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { formatDate } from '@/components/blog/card'
+import { focalPosition } from '@/lib/focal'
 
 const Featured = ({ post }: { post: Post }) => (
   <Link
@@ -17,8 +18,9 @@ const Featured = ({ post }: { post: Post }) => (
         fill
         priority
         sizes={'92vw'}
+        style={{ objectPosition: focalPosition(post.image) }}
         className={
-          'object-cover object-center grayscale-[0.35] group-hover:grayscale-0 group-hover:scale-[1.025] transition-[filter,transform] duration-1000 ease-in-out'
+          'object-cover grayscale-[0.35] group-hover:grayscale-0 group-hover:scale-[1.025] transition-[filter,transform] duration-1000 ease-in-out'
         }
       />
     )}

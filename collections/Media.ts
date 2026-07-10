@@ -22,7 +22,6 @@ export const Media: CollectionConfig = {
       withoutEnlargement: true,
       fastShrinkOnLoad: false,
     },
-    focalPoint: false,
     mimeTypes: ['image/*'],
   },
 }
