@@ -5,6 +5,7 @@ import HeroUIProvider from '@/context/heroui'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.flitewatch.aero'),
   title: 'FliteWatch',
   description: 'Soar to new heights with every flight',
   authors: [
